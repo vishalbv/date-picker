@@ -92,7 +92,10 @@ export const DatePicker = ({ changeHandler }) => {
           )
         )
     ).filter((i) => [0, 6].includes(i.getDay()));
-    changeHandler([range, weekendDates]);
+    changeHandler([
+      range.map((i) => formatDate(i)),
+      weekendDates.map((i) => formatDate(i)),
+    ]);
     closeModal();
   };
   return (
@@ -194,10 +197,12 @@ const CalendarView = ({
       </div>
       <div className="datesWrapper">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((i) => (
-          <div className="weekday">{i}</div>
+          <div className="weekday" key={i}>
+            {i}
+          </div>
         ))}
-        {dates.map((i) => (
-          <div>
+        {dates.map((i, k) => (
+          <div key={k}>
             <div
               onClick={() => _setSelected(i)}
               onMouseEnter={() => setHoveredDate(i)}
