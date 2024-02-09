@@ -98,6 +98,7 @@ export const DatePicker = ({ changeHandler }) => {
     ]);
     closeModal();
   };
+
   return (
     <div>
       <div
